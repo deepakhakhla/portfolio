@@ -175,20 +175,20 @@
     <div class="detail">
         <ion-icon class="close-detail" name="close-outline"></ion-icon>
         <div class="contact">
-            <form onsubmit="sendEmail(); reset(); return false;">
+            <form action="https://api.web3forms.com/submit" method="POST">
                 <h2>Get in Touch</h2>
-
+                <input type="hidden" name="access_key" value="86bf3076-5153-4d58-aaef-148c61e0cd1a">
                 <div class="fname s">
-                    <i class="fa-solid fa-user-tie"></i><input type="text" id="name" placeholder="Full Name" required autocomplete="off">
+                    <i class="fa-solid fa-user-tie"></i><input type="text" name="name" id="name" placeholder="Full Name" required autocomplete="off">
                 </div>
                 <div class="gmail s">
-                    <i class="fa-solid fa-envelope"></i><input type="email" id="email" placeholder="Email-ID" required autocomplete="off">
+                    <i class="fa-solid fa-envelope"></i><input type="email" name="email" id="email" placeholder="Email-ID" required autocomplete="off">
                 </div>
                 <div class="phoneno s">
-                    <i class="fa-solid fa-phone"></i><input type="text" id="phone" placeholder="Contact No" required autocomplete="off">
+                    <i class="fa-solid fa-phone"></i><input type="text" name="phone" id="phone" placeholder="Contact No" required autocomplete="off">
                 </div>
                 <div class="messagetext s">
-                    <i class="fa-solid fa-message"></i><textarea id="message" placeholder="Message" required autocomplete="off"></textarea>
+                    <i class="fa-solid fa-message"></i><textarea id="message" name="message" placeholder="Message" required autocomplete="off"></textarea>
                 </div>
                 <div class="submitbtn">
                     <button id="submit">Send</button>
