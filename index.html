@@ -214,31 +214,7 @@
 
     
 
-    <script>
-  var vapiInstance = null;
-  const assistant = "466efd04-eac8-4991-b92f-f56251baf740"; // Substitute with your assistant ID
-  const apiKey = "e0f5ff96-8528-42f1-b919-70d706084176"; // Substitute with your Public key from Vapi Dashboard.
-  const buttonConfig = {}; // Modify this as required
-
-  (function (d, t) {
-    var g = document.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    g.src =
-      "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-    g.defer = true;
-    g.async = true;
-    s.parentNode.insertBefore(g, s);
-
-    g.onload = function () {
-      vapiInstance = window.vapiSDK.run({
-        apiKey: e0f5ff96-8528-42f1-b919-70d706084176, // mandatory
-        assistant: 466efd04-eac8-4991-b92f-f56251baf740, // mandatory
-        config: buttonConfig, // optional
-      });
-    };
-  })(document, "script");
-
-</script>
+    
 
 
 
