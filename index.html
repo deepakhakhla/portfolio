@@ -195,18 +195,21 @@
             <p class="copy">Copyright &copy; 2024-2030</p>
         </div>
     </div>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script type="text/javascript">
+
+<script type="text/javascript">
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function() {
         window.voiceflow.chat.load({
-          verify: { projectID: '67278c90ab8a75cbda29160b' },
+          verify: { projectID: '681ec8bff256e7cc94c67f8f' },
           url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production'
+          versionID: 'production',
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
         });
       }
-      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
 
