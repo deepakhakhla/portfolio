@@ -241,9 +241,11 @@
 
     if (window.voiceflow?.chat?.setUserVariable) {
       window.voiceflow.chat.setUserVariable("is_logged_in", isLoggedIn);
+      window.voiceflow.chat.setUserVariable("test_value", 589);  // <--- STRESS TEST VALUE
     }
   });
 </script>
+
 
 
 
