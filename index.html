@@ -196,22 +196,55 @@
         </div>
     </div>
 
+<!-- Voiceflow Widget Embed -->
 <script type="text/javascript">
   (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: '681ec8bff256e7cc94c67f8f' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production',
-          voice: {
-            url: "https://runtime-api.voiceflow.com"
-          }
-        });
-      }
-      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    v.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: '681ec8bff256e7cc94c67f8f' },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'production',
+        voice: {
+          url: "https://runtime-api.voiceflow.com"
+        }
+      });
+    };
+    v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+    v.type = "text/javascript"; 
+    s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
+
+<!-- Detect login & pass variable to Voiceflow -->
+<script>
+  function getUserId() {
+    const scripts = document.querySelectorAll('script');
+    for (let script of scripts) {
+      const match = script.textContent.match(/odoo\.__session_info__\s*=\s*({[\s\S]*?});/);
+      if (match && match[1]) {
+        try {
+          const sessionInfo = Function('"use strict"; return (' + match[1] + ')')();
+          return sessionInfo?.user_id || null;
+        } catch (e) {
+          console.error('Failed to parse session info:', e);
+          return null;
+        }
+      }
+    }
+    return null;
+  }
+
+  window.addEventListener("VF_READY", () => {
+    const userId = getUserId();
+    const isLoggedIn = !!userId;
+
+    if (window.voiceflow?.chat?.setUserVariable) {
+      window.voiceflow.chat.setUserVariable("is_logged_in", isLoggedIn);
+    }
+  });
+</script>
+
 
 
 
