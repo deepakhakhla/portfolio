@@ -196,6 +196,10 @@
         </div>
     </div>
 
+
+
+
+
 <!-- Voiceflow Widget Embed -->
 <script type="text/javascript">
   (function(d, t) {
@@ -235,14 +239,27 @@
     return null;
   }
 
+  function setVoiceflowVariablesWithRetry(isLoggedIn, testValue, retries = 10) {
+    const setVars = () => {
+      if (window.voiceflow?.chat?.setUserVariable) {
+        window.voiceflow.chat.setUserVariable("is_logged_in", isLoggedIn);
+        window.voiceflow.chat.setUserVariable("test_value", testValue);
+        console.log("✅ Voiceflow variables set:", { isLoggedIn, testValue });
+      } else if (retries > 0) {
+        setTimeout(() => setVoiceflowVariablesWithRetry(isLoggedIn, testValue, retries - 1), 300);
+      } else {
+        console.warn("❌ Voiceflow not ready after retries.");
+      }
+    };
+    setVars();
+  }
+
   window.addEventListener("VF_READY", () => {
     const userId = getUserId();
     const isLoggedIn = !!userId;
+    const testValue = 589;
 
-    if (window.voiceflow?.chat?.setUserVariable) {
-      window.voiceflow.chat.setUserVariable("is_logged_in", isLoggedIn);
-      window.voiceflow.chat.setUserVariable("test_value", 589);  // <--- STRESS TEST VALUE
-    }
+    setVoiceflowVariablesWithRetry(isLoggedIn, testValue);
   });
 </script>
 
