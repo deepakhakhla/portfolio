@@ -220,49 +220,20 @@
   })(document, 'script');
 </script>
 
-<!-- Detect login & pass variable to Voiceflow -->
-<script>
-  function getUserId() {
-    const scripts = document.querySelectorAll('script');
-    for (let script of scripts) {
-      const match = script.textContent.match(/odoo\.__session_info__\s*=\s*({[\s\S]*?});/);
-      if (match && match[1]) {
-        try {
-          const sessionInfo = Function('"use strict"; return (' + match[1] + ')')();
-          return sessionInfo?.user_id || null;
-        } catch (e) {
-          console.error('Failed to parse session info:', e);
-          return null;
-        }
-      }
-    }
-    return null;
-  }
 
-  function setVoiceflowVariablesWithRetry(isLoggedIn, testValue, retries = 10) {
-    const setVars = () => {
-      if (window.voiceflow?.chat?.setUserVariable) {
-        window.voiceflow.chat.setUserVariable("is_logged_in", isLoggedIn);
-        window.voiceflow.chat.setUserVariable("test_value", testValue);
-        console.log("✅ Voiceflow variables set:", { isLoggedIn, testValue });
-      } else if (retries > 0) {
-        setTimeout(() => setVoiceflowVariablesWithRetry(isLoggedIn, testValue, retries - 1), 300);
-      } else {
-        console.warn("❌ Voiceflow not ready after retries.");
-      }
-    };
-    setVars();
-  }
-
-  window.addEventListener("VF_READY", () => {
-    const userId = getUserId();
-    const isLoggedIn = !!userId;
-    const testValue = 589;
-
-    setVoiceflowVariablesWithRetry(isLoggedIn, testValue);
-  });
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/687e0fdf8f6b8e19139b3349/1j0m6s0ob';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
-
+<!--End of Tawk.to Script-->
 
 
 
